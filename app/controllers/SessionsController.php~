@@ -1,0 +1,38 @@
+
+<?php
+
+class SessionsController extends \BaseController{
+
+	public function create(){
+		//  if(Auth::check())
+		return Redirect::to('dashboard');
+       
+      // return View::make('login.loginForm'); 
+    }
+
+    public function store(){
+   // $userdata = array(
+//	   'username' => Input::get('username'),
+  //         'password' => Input::get('password')
+ 
+    //  );
+   //    if(Auth::attempt($userdata)){
+      //    return Redirect::to('dashboard')->with('message', 'yes');
+     //    }
+      // else{
+       // Session::flash('message', 'Wrong username or password');
+       // return Redirect::route('sessions.create')->with('message', 'wrong'); 
+       // }
+    }
+
+    public function destroy()
+    {
+//	    Auth::logout();
+//	    return Redirect::route('sessions.create');
+    }
+ }
+
+
+
+
+

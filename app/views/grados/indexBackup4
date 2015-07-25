@@ -1,0 +1,51 @@
+<!--@extends('layouts.user')
+@section('main')-->
+
+<html>
+<head>
+
+{{HTML::script('assets/js/jquery-1.11.1.js'); }}
+{{HTML::script('assets/js/jquery-ui.js');  }}
+{{HTML::script('assets/js/jquery-ui.min.js'); }}
+{{HTML::style('assets/css/jquery-ui.min.css'); }}
+ 
+  <script>
+  $(function() {
+  // $(document).ready(function() {
+    $( '#tabs' ).tabs();
+  });
+  </script>
+</head>
+
+
+<body>
+<h1>Lista Materias por Grado</h1>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">1 Grado</a></li>
+    <li><a href="#tabs-2">2 Grado</a></li>
+    <li><a href="#tabs-3">3 Grado</a></li>
+    <li><a href="#tabs-4">4 Grado</a></li>
+    <li><a href="#tabs-5">5 Grado</a></li>
+    <li><a href="#tabs-6">6 Grado</a></li>
+  </ul>
+  <?php $i = 1; ?>
+@foreach($grados as $grado)
+	<div id="tabs-{{$i}}" >
+           @if($grado->subject->count())
+             @foreach($grado->subject as $subject)
+	      <li> {{ $subject->name_subjects }} </li>
+	     @endforeach
+            @else
+	     No hay materias asociadas
+	     @endif
+             </br></br>
+              {{ link_to_route('grados.edit', 'Agregar Materias',
+ array($grado->id_grados), array('class' => 'btn btn-info')) }} 
+             <?php $i++; ?>
+  </div>
+@endforeach
+</div>
+ 
+

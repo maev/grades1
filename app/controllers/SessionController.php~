@@ -1,0 +1,24 @@
+
+ SessionController extends BaseController{
+
+    public function create(){
+        $userdate = array(
+	   'username' => Input::get('username'),
+           'password' => Input::get('password')
+ 
+      );
+       if(Auth::attempt($userdata)){
+          return Redirect::to('dashboard')->with('message', 'yes');
+         }
+       else{
+        Session::flash('message', 'Wrong username or password');
+        return Redirect::to('login'); 
+
+    }
+
+
+
+
+
+
+}

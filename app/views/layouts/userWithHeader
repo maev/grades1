@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+       {{HTML::script('assets/js/jquery-1.11.1.js'); }}
+       {{HTML::script('assets/js/jquery-ui.js'); }}
+       {{HTML::script('assets/js/jquery-ui.min.js'); }}
+       {{HTML::style('assets/js/jquery-ui.min.css'); }}
+       @yield('header')
+    </head>
+
+    <body>
+     
+        <div class="container">
+            @if (Session::has('message'))
+                <div class="flash alert">
+                    <p>{{ Session::get('message') }}</p>
+                </div>
+            @endif
+            
+            @yield('main')
+        </div>
+
+    </body>
+
+</html>

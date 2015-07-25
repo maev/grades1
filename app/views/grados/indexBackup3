@@ -1,0 +1,112 @@
+<!--@extends('layouts.user')
+@section('main')-->
+
+<html>
+<head>
+
+{{HTML::script('assets/js/jquery-1.11.1.js'); }}
+{{HTML::script('assets/js/jquery-ui.js');  }}
+{{HTML::script('assets/js/jquery-ui.min.js'); }}
+{{HTML::style('assets/css/jquery-ui.min.css'); }}
+ 
+  <script>
+  $(function() {
+  // $(document).ready(function() {
+    $( '#tabs' ).tabs();
+  });
+  </script>
+</head>
+
+
+<body>
+<h1>Lista Grados</h1>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">1 Grado</a></li>
+    <li><a href="#tabs-2">2 Grado</a></li>
+    <li><a href="#tabs-3">3 Grado</a></li>
+    <li><a href="#tabs-4">4 Grado</a></li>
+    <li><a href="#tabs-5">5 Grado</a></li>
+    <li><a href="#tabs-6">6 Grado</a></li>
+  </ul>
+  <?php $i = 1; ?>
+@foreach($grados as $grado)
+	<div id="tabs-{{$i}}" >
+             @foreach($grado->subject as $subject)
+	      <li> {{ $subject->name_subjects }} </li>
+	     @endforeach
+              {{ link_to_route('grados.edit', 'Agregar Materias',
+ array($grado->id_grados), array('class' => 'btn btn-primary')) }} 
+             <?php $i++; ?>
+  </div>
+@endforeach
+</div>
+ 
+@if ($grados->count())
+    <table class="table table-striped table-bordered">
+	<thead>
+            <tr>
+		<th>Grado</th> 
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach ($grados as $grado)
+                <tr>
+		    <td>{{ $grado->name_grados }}</td>
+        
+         
+                    <td>{{ link_to_route('grados.edit', 'Agregar Materias',
+ array($grado->id_grados), array('class' => 'btn btn-primary')) }}</td>
+                    <td>{{ link_to_route('grados.show', 'Mostrar materias de grado',array($grado->id_grados), array('class' => 'btn btn-info')) }} </td>        
+	
+		    
+          </tr>
+
+            @endforeach
+              
+	</tbody>
+      
+    </table>
+@else
+    No hay grados registrados
+@endif
+
+@stop
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

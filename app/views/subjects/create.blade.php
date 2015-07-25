@@ -1,0 +1,45 @@
+@extends('layouts.user')
+
+@section('main')
+
+<h1>Agregar Materia</h1>
+
+{{ Form::open(array('route' => 'subjects.store')) }}
+    <ul>
+         </br>
+        <li> 
+            {{Form::label('name_subjects', 'Nombre de Materia:')  }}
+            {{Form::text('name_subjects') }}
+	</li> 
+         </br>
+         </br>
+         <b>Tipo de Materia:</b>
+         <li>
+
+           
+	   <input type="radio" name="engSpanExtra_subjects" value="spanish">Espanol
+	  <input type="radio" name="engSpanExtra_subjects" value="english">Ingles
+          <input type="radio" name="engSpanExtra_subjects" value="extra">Extracurricular
+          
+        
+	 </li>
+         </br></br>
+        <b>Calificacion Numerica</b>
+        <li>
+           
+	   <input type="radio" name="IntGrade_subjects" value="yes">Si
+	  <input type="radio" name="IntGrade_subjects" value="no">No
+       
+        </li>
+        </br></br></br>
+        <li>
+            {{ Form::submit('Submit', array('class' => 'btn')) }}
+        </li>
+    </ul>
+{{ Form::close() }}
+
+@if ($errors->any())
+    <ul>
+        {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+    </ul>
+@endif

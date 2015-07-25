@@ -1,0 +1,37 @@
+@extends('layouts.user')
+
+@section('main')
+
+<h1>Crear Alumno</h1>
+
+{{ Form::open(array('route' => 'students.store')) }}
+    <ul>
+        <li> 
+            {{Form::label('firstName_students', 'Nombre:')  }}
+            {{Form::text('firstName_students') }}
+        </li>
+        <li>
+            {{Form::label('lastName_students','Apellido:') }}
+            {{Form::text('lastName_students')  }}
+	 </li>
+	 <li>
+            {{Form::label('curp_students', 'CURP:')  }}
+            {{Form::text('curp_students')  }}
+        </li>
+        </br>
+        <li>
+	    {{ "Status" }} </br>
+	   <input type ="radio" name="active_students" value="1"> {{"Activo"}} 
+	   <input type = "radio" name = "active_students" value="0"> {{"Inactivo"}} 
+	</li>
+        <li>
+            {{ Form::submit('Submit', array('class' => 'btn')) }}
+        </li>
+    </ul>
+{{ Form::close() }}
+
+@if ($errors->any())
+    <ul>
+        {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+    </ul>
+@endif

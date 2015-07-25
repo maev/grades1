@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
+
+class Grado extends Eloquent implements UserInterface, RemindableInterface {
+	//class Teacher extends Eloquent{
+		use UserTrait, RemindableTrait;
+		 //public $timestamps = false;
+		/**
+		 * The database table used by the model.
+		 *
+		 * @var string
+		 */
+		protected $table = 'grados';
+
+		/**
+		 * The attributes excluded from the model's JSON form.
+		 *	 * @var array  are hidden
+		 */
+		 
+	      protected $primaryKey = "id_grados"; 
+		
+		   //protected $guarded = array('id_teachers');
+		   protected $fillable = array('name_grados');
+		
+		   
+		   public static $rules = array(
+		    );
+
+                  public function subject()
+	          {
+		          return $this->belongsToMany('Subject','grado_subject','grados_id_grados','subjects_id_subjects')->withPivot('year_grado_subject');
+	          }
+		   
+		   public function groups()
+		   {
+			   return $this->hasMany('Group','id_grados','grados_id_grados');
+		   }
+	 // public static $timestamps = false;	  
+	}
