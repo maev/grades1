@@ -2,5 +2,38 @@
 
 @section('main')
 <h1> Grupo:  {{$group->name_groups}} {{$group->year_groups }}  </h1>
+<h3> Grado:  {{$group->grados_id_grados }}</h3>
 
+@if($teachers->count())
+<p><b>Maestros:   </b></p>
+    @foreach($teachers as $teacher)
+        {{  $teacher -> firstName_teachers}} {{ $teacher->lastName_teachers}} </br>
+  @endforeach
+  @else
+    <p>No hay maestros registrados</p>
+  @endif
+   </br>
+   @if($students->count())
+     <p><b> Alumnos</b></p>
+     <table class="table table-striped table-bordered">
+     <thead>
+     <tr>
+     <th>Nombre</th>
+     <th>Apellido</th>
+     <th>CURP</th>
+     </tr>
+      </thead>
+     <tbody>
+     @foreach($students as $student)
+    <tr>
+    <td>  {{$student->firstName_students}} </td>
+    <td>  {{$student->lastName_students}}</td>
+    <td>  {{$student->curp_students}}</td>
+    </tr>
+    </tbody>
+   @endforeach
+   </table>
+ @else
+   <p>No hay alumnos registrados</p>
+ @endif
 @stop 

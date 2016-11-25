@@ -68,7 +68,7 @@ class StudentController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		return 'in show';
 	}
 
 

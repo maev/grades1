@@ -13,21 +13,23 @@
         <li>
              {{ Form::label('year_groups','Year') }}
 	     {{ Form::text('year_groups', $group->year_groups) }}
-	 </li>
-	 <li>
-           
-           <br>
-	</li>  
+	 </li>  
 	<li>
-           {{Form::label('grados_id_grados', 'Grado:')  }}
-           {{Form::select('grados_id_grados', $id_grados, $group->grados_id_grados,  ['class'=> 'form-control']) }}
-	</li>   
-<?php //$s=$group->students();
-  $s = [1,2];
-         $ids = array_map(create_function('$st', 'return $st->id_students;' ), $s);?>
+            {{ Form::label('grados_id_grados','Grado:') }}
+            {{ Form::select('grados_id_grados',$id_grados, $group->grados_id_grados,['class' => 'form-control' ]) }}	
+	</li> 
+        <li>
+            {{ Form::label('id_teacher_sp', 'Maestro de Espanol:') }}
+            {{ Form::select('id_teacher_sp', $id_teachers, null, ['class' => 'form-control']) }}
+	</li>
+        <li>
+            {{ Form::label('id_teacher_en', Maestro de Ingles:')  }}
+            {{ Form::select('id_teacher_en', $id_teachers, null, ['class' => 'form-control']) }}
+        </li>
+
         <li>
             {{  Form::label('id_students', 'Alumnos:')  }}
-            {{  Form::select('id_students', $id_students, $group->students(),  ['class' => 'form-control','multiple' ]) }} 
+            {{  Form::select('id_students[]', $id_students, $group->students()->select('students.id_students as id')->lists('id'),  ['class' => 'form-control','multiple' ]) }} 
 
         </li>
         <li>

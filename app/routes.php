@@ -41,6 +41,7 @@ Route::group(array('before' => 'auth'), function()
       Route::resource('grados', 'GradoController', array('except' => array('destroy'))); 
       
       Route::resource('groups','GroupController');
+      Route::resource('scores','ScoreController');
  });
 
 Route::get('first/page', function()

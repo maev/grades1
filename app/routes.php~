@@ -23,13 +23,13 @@ Route::get('logout', 'SessionsController@destroy');
 Route::resource('sessions', 'SessionsController');
 
 
-//Route::group(array('before' => 'auth'), function() 
-//{
+Route::group(array('before' => 'auth'), function() 
+{
 
     Route::get('dashboard',function()
        {
 	return View::make('dashboard');
-       });//->before('auth');
+       })->before('auth');
 
     
       Route::resource('students','StudentController');
@@ -41,7 +41,8 @@ Route::resource('sessions', 'SessionsController');
       Route::resource('grados', 'GradoController', array('except' => array('destroy'))); 
       
       Route::resource('groups','GroupController');
-// });
+      Route::resource('scores','GradeController');
+ });
 
 Route::get('first/page', function()
 {  

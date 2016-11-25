@@ -34,7 +34,7 @@ class Student extends Eloquent implements UserInterface, RemindableInterface {
 		   'curp_students'=>'required|size:18|unique:students,curp_students'  		  
 	          );
 
-		  public $messages = array(
+		  public static $messages = array(
 			   'curp_students.unique' => 'El CURP ya existe',
 		        );
 

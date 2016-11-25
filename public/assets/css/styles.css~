@@ -5,7 +5,7 @@ body {
 
 h1 {
 	border-style:solid none solid none;
-	color:brown;
+	color:saddlebrown;
 	text-align:center;
         font-family:comic sans MS;
         font-size:30pt;	
@@ -27,6 +27,14 @@ h1 {
    float: left;
    width:200px;
 }
+#subcontiner1{
+	width:50px;
+}
+#subcontainer{
+   width:150px;
+   float: left;
+ }
+
 p  {
      color:olivedrab;
      font-family:comic sans MS;

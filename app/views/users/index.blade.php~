@@ -30,8 +30,8 @@
                     <td>
           {{ Form::open(array('method' 
 => 'DELETE', 'route' => array('users.destroy', $user->id))) }}                       
-                            {{ Form::submit('Delete', array('class'
- => 'btn btn-danger')) }}
+                            {{ Form::submit('Activar/Inactivar', array('class'
+ => 'btn btn-warning')) }}
                         {{ Form::close() }}
                     </td>
                 </tr>

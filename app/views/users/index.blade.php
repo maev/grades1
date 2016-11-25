@@ -13,7 +13,8 @@
 		<th>Nombre</th>
                 <th>Apellido</th>
 		<th>Usuario</th>
-                <th>Activo</th>
+		<th>Activo</th>
+                <th></th><th></th>
        <!-- <th>Password</th> --> 
             </tr>
         </thead>
@@ -31,7 +32,7 @@
           {{ Form::open(array('method' 
 => 'DELETE', 'route' => array('users.destroy', $user->id))) }}                       
                             {{ Form::submit('Activar/Inactivar', array('class'
- => 'btn btn-default')) }}
+ => 'btn btn-warning')) }}
                         {{ Form::close() }}
                     </td>
                 </tr>

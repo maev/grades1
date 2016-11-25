@@ -24,10 +24,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	       
 		
 		   protected $guarded = array('id');
-		   protected $fillable = array('username','teachers_id_teachers');
+		   protected $fillable = array('username');
 		 //protected $fillable = array('name');
 		 // protected $fillable = array('username');  
-		  protected $hidden = array('password', 'remember_token');
+		  protected $hidden = array('password', 'remember_token','admin_users','active_users');
 		   
 		   public static $rules = array(
 		   'username'=> 'required|min:4',
@@ -37,8 +37,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 		   public function teacher()
 		   {
-			   return $this->hasOne('Teacher','users_id');
-			//return $this-> belongsTo('Teacher');
-			   }
-	 // public static $timestamps = false;	  
-	}
+			   return $this->hasOne('Teacher','user_id');
+		   }
+		  
+		  
+}

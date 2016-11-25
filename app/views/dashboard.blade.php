@@ -32,7 +32,8 @@
     <div id="right">
    <p> {{HTML::link('students', 'Alumnos') }} </p></br>
    <p> {{HTML::link('groups', 'Grupos') }} </p></br>
-   <p> Calificaciones </p>
+   <p> {{HTML::link('scores', 'Calificaciones') }} </p>
+   
    </div>
 
   </div>

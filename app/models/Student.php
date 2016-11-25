@@ -48,8 +48,11 @@ class Student extends Eloquent implements UserInterface, RemindableInterface {
 	 {
 		 return $this->belongsToMany('Group','group_student','id_student','id_group');
 	 }
-		  
-
+         public function getStudentFullNameAttribute()
+	 {
+             return $this->attributes['firstName_students'].' '.$this->attributes['lastName_students'];
+	 }
+        
         /** public static function messages()
 	 {
            return['curp_students.unique' => 'Ya existe'];

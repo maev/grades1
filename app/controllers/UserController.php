@@ -9,11 +9,15 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::all();
-		$users->toarray();
-		//$teachers = Teacher::all();
+	        $teachers = Teacher::orderBy('lastName_teachers', 'asc')->get();
 		//$teachers->toarray();
-		return View::make('users.index', compact('users'));
+		//$users = User::teacher()->orderBy('lastName_teachers','asc')->orderBy('active_users','desc')->get();
+		$users = User::whereHas('teacher', function($q) {
+			$q->orderBy('Lastname_teachers','asc');
+		})->orderBy('active_users','desc')->get();
+		//$users = User::all();
+		//$users->toarray();
+		return View::make('users.index', compact('users','teachers'));
 	}
 
 
@@ -34,7 +38,12 @@ class UserController extends \BaseController {
 	 * @return Response
 	 */
 	public function store()
-	{
+	{ 
+          //return Input::get('admin_users');
+	  //if(!$isAdmin){
+	//	  $isAdmin 
+	 // }
+
 	  $input = Input::all();
           $validation = Validator::make($input, User::$rules);
 
@@ -43,10 +52,13 @@ class UserController extends \BaseController {
            // User::create($input);
 
             $user = new User;
-            //$user->name=Input::get('name');
 	    $user->username=Input::get('username');
 	    $plainTextPassword = Input::get('password');
 	    $user->password =Hash::make($plainTextPassword);
+	    $user->admin_users = Input::get('admin_users');
+	       if(!$user->admin_users){
+                  $user->admin_users = 0;
+	       }
 	    //$user->password_confirmation = $user->password;
 	    $user->save();
 	    $teacher = new Teacher;

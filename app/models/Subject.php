@@ -34,7 +34,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 		   );
 		public function grado()
 		{
-			return $this->belongsToMany('Grado','grado_subject','subjects_id_subjects','grados_id_grados');
+			return $this->belongsToMany('Grado','grado_subject','subjects_id_subjects','grados_id_grados')->withPivot('year_grado_subject')->withTimestamps();
 		}
 
 		 public function teacher()

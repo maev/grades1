@@ -18,8 +18,9 @@
     <div id = "left">
      <p> {{HTML::link('users', 'Maestros')  }} </p> </br>
      <p> {{HTML::link('subjects','Materias')  }} </p></br>
-     <p> {{HTML::link('grados', 'Grados') }} <p>
+     <p> {{HTML::link('grados', 'Grados') }} <p></br>
 <!--     {{HTML::script('assets/js/myjavascript.js'); }} -->
+   <p> {{HTML::link('transcripts', 'Historiales') }} <p>
 
     </div>
 
@@ -30,11 +31,12 @@
     </div>
 
     <div id="right">
-   <p> Alumnos</p></br>
+   <p> {{HTML::link('students', 'Alumnos') }} </p></br>
    <p> {{HTML::link('groups', 'Grupos') }} </p></br>
-   <p> Calificaciones </p>
+   <p> {{HTML::link('scores', 'Ingresar Calificaciones') }} </p>
+   
    </div>
-
+   </div>
   </div>
  </body>
 </html>

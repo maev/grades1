@@ -27,7 +27,9 @@
 	   {{ Form::label('password', 'Confirm Password:')  }}
            {{ Form::password('password_confirmation') }}
           </li>
-
+         <li>{{ 'Administrador' }} 
+	    {{Form::checkbox('admin_users', '1')  }}
+         </li>
 
         <li>
             {{ Form::submit('Submit', array('class' => 'btn')) }}

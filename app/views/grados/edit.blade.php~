@@ -6,8 +6,19 @@
 
 {{ Form::model($grado, array('method' => 'PATCH', 'route' =>
  array('grados.update', $grado->id_grados))) }}
+<?php $y = date("Y"); ?>
     <ul>        
+        <!--  {{ Form::label('year', 'Year') }}
+	  {{ Form::selectRange('year',$y, $y+5)}} -->
+           <select name = 'year'>
+             
+	     <option value={{$y}}>{{$y}}-{{$y+1}}</option>
+	     <option value={{$y+1}}>{{$y+1}}-{{$y+2}}</option>
+	     <option value={{$y+2}}>{{$y+2}}-{{$y+3}}</option>
+	     <option value={{$y+3}}>{{$y+3}}-{{$y+4}}</option>
+	     <option value={{$y+4}}>{{$y+4}}-{{$y+5}}</option>
 
+        </select>
            <?php  $subjects = Subject::all();
                 $subjects->toarray();  ?>
         

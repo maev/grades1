@@ -39,7 +39,7 @@ class StudentController extends \BaseController {
 		//	return "must store";
 		$input = Input::all();
 		 
-		$validation = Validator::make($input, Student::$rules);
+		$validation = Validator::make($input, Student::$rules, Student::$messages);
 
 		if($validation->passes())
 	        {

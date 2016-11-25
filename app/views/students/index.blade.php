@@ -16,15 +16,15 @@
                 <th>Apellido</th>
 		<th>Activo</th>
                 <th>CURP</th>
-                <th>Editar</th>
-        
+		<th>Editar</th>
+                <th>Activar</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($students as $student)
                 <tr>
-		    <td>{{ $student->firstName_students }}</td>
+		    <td><a href="{{ route('students.show', $student->id_students) }}"> {{ $student->firstName_students }}</a> </td>
                     <td>{{ $student->lastName_students }}</td>
                     <td>{{ $student->active_students}}</td>        
 		    <td>{{ $student->curp_students}}</td>
@@ -32,10 +32,10 @@
  array($student->id_students), array('class' => 'btn btn-info')) }}</td>
                     <td>
           {{ Form::open(array('method'=> 'DELETE', 'route' => array('students.destroy', $student->id_students))) }}                       
-                            {{ Form::submit('Activar/Desactivar', array('class'
- => 'btn btn-danger')) }}
+                            {{ Form::submit('Des/Activar', array('class'
+ => 'btn btn-warning')) }}
                         {{ Form::close() }}
-                    </td>
+		   </td>
                 </tr>
             @endforeach
               

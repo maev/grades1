@@ -30,10 +30,11 @@ class Grado extends Eloquent implements UserInterface, RemindableInterface {
 		   public static $rules = array(
 		    );
 
-         public function subject()
-	 {
-		 return $this->belongsToMany('Subject','grado_subject','grados_id_grados','subjects_id_subjects')->withPivot('year_grado_subject');
-	 }
+                  public function subject()
+	          {
+		          return $this->belongsToMany('Subject','grado_subject','grados_id_grados','subjects_id_subjects')->withPivot('year_grado_subject')->withTimestamps();
+	          }
+		   
 		   public function groups()
 		   {
 			   return $this->hasMany('Group','id_grados','grados_id_grados');

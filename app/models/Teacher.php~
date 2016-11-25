@@ -33,14 +33,24 @@ class Teacher extends Eloquent implements UserInterface, RemindableInterface {
 		  
 	   );
 
+         public function getTeacherFullNameAttribute()
+	 {
+               return $this->attributes['firstName_teachers'].' '.$this->attributes['lastName_teachers'];
+	 }//put in controller:  $teacher = Teacher::orderBy('lastName_teacher')->get();
+  //$teachers = $teachers->all()->lists('TeacherFullName','id_teachers');		   
+
          public function user()
 	 {
-		  return $this->belongsTo('Teacher');
+		  return $this->belongsTo('User');
 		  //return $this->hasOne('User','teachers_id_teachers');
 	 }
-         public function subject()
+         public function subjects()
 	 {
-		 return $this->hasMany('Subject','teachers_subjects','id_teachers','id_subjects');
+		 return $this->belongsToMany('Subject','group_subject_teacher','id_teacher','id_subject');
 	 }
-	 // public static $timestamps = false;	  
-	}
+	 public function groups()
+	 {
+		 return $this->belongsToMany('Group','group_subject_teacher','id_teacher','id_group');
+         }		 
+}
+ 

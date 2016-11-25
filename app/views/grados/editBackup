@@ -2,44 +2,31 @@
 
 @section('main')
 
-<h1>Agregar Materias a {{$grado->'name_grados'}}  Grado</h1>
+<h1>Agregar Materias a {{ $grado->name_grados }} Grado</h1>
 
 {{ Form::model($grado, array('method' => 'PATCH', 'route' =>
  array('grados.update', $grado->id_grados))) }}
     <ul>        
 
-         <li> 
-            {{Form::label('name_subjects', 'Nombre de Materia:')  }}
-            {{Form::text('name_subjects') }}
-	</li> 
-         </br>
-         </br>
-         <b>Tipo de Materia:</b>
-         <li>  
-	   <input type="radio" name="engSpanExtra_subjects" value="spanish">Espanol
-	  <input type="radio" name="engSpanExtra_subjects" value="english">Ingles
-          <input type="radio" name="engSpanExtra_subjects" value="extra">Extracurricular
-          
+           <?php  $subjects = Subject::all();
+                $subjects->toarray();  ?>
         
-	 </li>
-         </br></br>
-        <b>Calificacion Numerica</b>
-        <li>
-           
-	   <input type="radio" name="IntGrade_subjects" value="yes">Si
-	  <input type="radio" name="IntGrade_subjects" value="no">No
-       
-        </li>
-        </br></br></br>
-       
+	      @foreach($subjects as $subject)
+                 <table>
+		   <tr><td>{{ $subject->name_subjects }} </td>
+                        <td><input type="checkbox" name="subj[]" value = {{$subject->id_subjects }} ></td></tr>
+	         </table>  
+             @endforeach
 
         <li>
-            {{ Form::submit('Update', array('class' => 'btn btn-info')) }}
-            {{ link_to_route('subjects.show', 'Cancel', $subject->
-id_subjects, array('class' => 'btn')) }}
-        </li>
+	    {{ Form::submit('Update', array('class' => 'btn btn-info')) }}
+	    
+	     
+            {{ link_to_route('grados.index', 'Cancel', array('class' => 'btn btn-info')) }}
+            
+      
     </ul>
-{{ Form::close() }}
+<!--{{ Form::close() }} -->
 
 @if ($errors->any())
     <ul>

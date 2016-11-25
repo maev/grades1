@@ -11,8 +11,9 @@
  
   <script>
   $(function() {
-  // $(document).ready(function() {
-    $( '#tabs' ).tabs();
+//  $(document).ready(function() {
+	  $( '#tabs' ).tabs();
+
   });
   </script>
 </head>
@@ -20,28 +21,60 @@
 
 <body>
 <h1>Lista Materias por Grado</h1>
+
 <?php 
-    $year = date("Y");
-    $month = date("m"); 
-    if($month < 8){
-       $year = $year - 1;  
-    }
- ?>
-<h2>{{$year}}-{{$year+1}}</h2>
+$y = date("Y");
+$month = date("m"); 
+if($month < 8){
+$y = $y - 1;  
+} 
+?>
+<script> 
+document.getElementById('selectedValue').innerHTML = $y;
+</script>
+<h2>{{$y}}-{{$y+1}}</h2>
+<select name="year" id="selectedYear" onChange="document.getElementById('selectedValue').innerHTML = this.value;">
+
+@foreach($years as $year)
+<option value = {{$year}}
+@if($year == $y)
+  echo selected="selected";
+@endif
+
+>{{$year}}-{{$year+1}}</option>
+@endforeach
+</select>
+<script>
+ /* function(){
+	  $.ajax({
+		  url: "views/grados/index.blade.php",
+		  type:"POST",
+	          data: {selectedValue: selectedValue}	  
+	  });
+   } */
+</script>
+<h3>here <span id="selectedValue"></span> </h3>
 <div id="tabs">
 <ul> <?php $i=1; ?>
-   @foreach($grados as $grado)
-    <li><a href="#tabs-{{$i}}">Grado:{{ $grado->name_grados}} </a></li>
+@foreach($grados as $grado)
+<li><a href="#tabs-{{$i}}">{{ $grado->name_grados}} </a></li>
     <?php $i++; ?>
    @endforeach
   </ul>
   <?php $i = 1; ?>
 @foreach($grados as $grado)
 	<div id="tabs-{{$i}}" >  
-	   @if($grado->subject->count())
+	  @if($grado->subject->count())
+        <!--    @if(isset($_POST['selectedValue']))
+	      $y = $_POST['selectedValue'];
+            @endif  --!>
            <table>
              @foreach($grado->subject as $subject)
-	     <tr> <td> {{ $subject->name_subjects }}</td> 
+	     <tr> <td> 
+                {{ $subject->pivot->year_grado_subject }}
+		{{ $subject->name_subjects }}
+              
+               </td> 
               <td>
 	        
 		{{Form::open(array('method' => 'DELETE', 'route' => array('grados.destroy', $grado->id_grados, $subject->id_subjects)))  }} 

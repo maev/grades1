@@ -16,8 +16,8 @@ class Group extends Eloquent implements UserInterface, RemindableInterface {
 		 */
 		protected $table = 'groups';
 
-		/**
-		 * The attributes excluded from the model's JSON form.
+		
+		/* The attributes excluded from the model's JSON form.
 		 *	 * @var array  are hidden
 		 */
 		 
@@ -25,26 +25,55 @@ class Group extends Eloquent implements UserInterface, RemindableInterface {
 		
 		  
               protected $fillable = array('name_groups','year_groups','grados_id_grados');
-		
-		   
+	      public static $rules = [];
+            	      
+	  	 /*  
 	      public static $rules = array(
-		      'name_groups'=> 'required',
+
 		      'year_groups'=> 'required',
+		      'name_groups'=> 'required|unique:groups,name_groups,NULL, id_groups,year_groups,' . $this->year_groups,
 		      'grados_id_grados' => 'required'
-		    );
+
+	      );*/
+	      public static function getRules($year){
+	         $rules = array(
+		 
+		      'year_groups'=> 'required',
+		      'name_groups'=> 'required|unique:groups,name_groups,NULL, id_groups,year_groups,' . $year,
+	              'grados_id_grados' => 'required'	 
+	      );
+		 return $rules;
+	      
+	      }
+
+
 
          public function grado()
 	 {
 		 // return $this->belongsTo('Grado','grados_id_grados'); 
 		 return $this->belongsTo('Grado','grados_id_grados');
 	 }
-         public function subject()
-	 {
-		 return $this->belongsToMany('Subject');
-	 }
+         //public function subjects()
+	 //{
+	//	 return $this->hasManyThrough('Subject','Grado',);
+	 //}
 	 public function students()
 	 {
-		 return $this->belongsToMany('Student','group_student','id_group','id_student');
+		 return $this->belongsToMany('Student','group_student','id_group','id_student')->withTimestamps();
 	 }
-	 
-	}
+	 public function teachers()
+	 {
+		 return $this->belongsToMany('Teacher','group_subject_teacher','id_group','id_teacher')->withPivot('id_subject','year_groups')->withTimestamps();
+		 
+	/*	 return $this->belongsToMany('Teacher','group_subject_teacher','id_group','id_teacher')
+			 ->withPivot('id_subject','year_groups')
+			 ->join('subject','id_subject', 'subjects_id_subjects')
+			 ->withTimestamps();
+	 */ 
+
+	 }
+          public function bimesters()
+	  {
+              return $this -> hasMany('Bimester', 'group_id');
+	  }	  
+}

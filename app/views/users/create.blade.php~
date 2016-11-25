@@ -6,8 +6,14 @@
 
 {{ Form::open(array('route' => 'users.store')) }}
     <ul>
-
-
+        <li> 
+            {{Form::label('firstName', 'Nombre:')  }}
+            {{Form::text('firstName') }}
+        </li>
+        <li>
+            {{Form::label('lastName','Apellido:') }}
+            {{Form::text('lastName')  }}
+         </li>
         <li>
             {{ Form::label('username', 'Username:') }}
             {{ Form::text('username') }}
@@ -21,7 +27,9 @@
 	   {{ Form::label('password', 'Confirm Password:')  }}
            {{ Form::password('password_confirmation') }}
           </li>
-
+         <li>{{ 'Administrador' }} 
+	    {{Form::checkbox('admin_users', '0')  }}
+         </li>
 
         <li>
             {{ Form::submit('Submit', array('class' => 'btn')) }}

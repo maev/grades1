@@ -1,6 +1,7 @@
 @extends('layouts.user')
 @section('main')
 
+<h3 align="right"> <b>{{HTML::link('dashboard','Dashboard') }} </b></h3>
 <h1>Lista Materias</h1>
 
 <p>{{ link_to_route('subjects.create', 'Agregar Materia') }}</p>
